@@ -1,23 +1,33 @@
-import os
-
 #1) Add expenses - completed
 #2) View expenses - completed
-#3) Categorize expenses -
-#4) Visualize Data
-#5) Export data
+#3) Categorize expenses - completed
+#4) Visualize Data - cannot do unless install a different python library, trying to keep it on default python
+#5) Export data - working
 #The goal is to allow users to track expenses and categorize and visualize spending habits.
 
 def user_expense() -> None:
-    total: float = {}
+    total: dict = {}
     while True:
-        category: str = input("Please input Category: ")
-        expense: float = float(input("Please input expenses, type 'q' to quit: "))
-        total += expense
-        print(f"Your total amount of expenses is {total}")
-        if expense().lower() in ['quit', 'q']:
+        category: str = input("Please input category, type 'q' to quit: ").strip()
+        if category.lower() in ['quit', 'q']:
             break
-        elif category().lower in ['quit','q']:
-             break
+
+        expense_input: str = input("Please input expenses, type 'q' to quit: ").strip()
+        if expense_input.lower() in ['quit', 'q']:
+            break
+
+        try:
+            expense: int = int(expense_input)
+        except ValueError:
+            print("Invalid expense amount. Please enter a number.")
+            continue
+
+        if category in total:
+            total[category] += expense
+        else:
+            total[category] = expense
+
+        print(f"Your total amount of expenses for category {category} is {total[category]}.")
         
 
 def user_input() -> None:
