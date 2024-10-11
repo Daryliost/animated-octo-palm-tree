@@ -2,24 +2,18 @@
 
 class Monster:
     #Define the monster
-    def __init__(self, monster, level, category, armour_level, arm_durability, arm_health_pool, life, weapon_level, wep_durability, wep_health_pool):
+    def __init__(self, monster, level, category, armour_level, life, weapon_level):
         self.monster = monster
         self.level = level
         self.category = category
         self.armour_level = armour_level
-        self.arm_durability = arm_durability
-        self.arm_health_pool = arm_health_pool
         self.life = life
         self.weapon_level = weapon_level
-        self.wep_durability = wep_durability
-        self.wep_health_pool = wep_health_pool
 
-    def damage(self):
-        total_weapon_damage = self.weapon_level - self.armour_level
-        damage_armour = self.arm_durability - self.weapon_level
-        damage_weapon = self.wep_health_pool - self.armour_level
-        damage_health = self.life - self.weapon_level
-        return total_weapon_damage, damage_armour, damage_weapon, damage_health
+    def damage(self, life_damage):
+        life_damage = self.life - self.weapon_level
+        return life_damage
+    
 
 
 ogre = Monster(monster = 'ogre', level = 50, category = 'giant', armour_level = 1, arm_durability = 100, arm_health_pool = 100, life = 100, weapon_level = 6, wep_durability = 100, wep_health_pool = 100)
@@ -51,8 +45,6 @@ def main() -> None:
     
     Fighter1 = monsters[Fighter1]
     Fighter2 = monsters[Fighter2]
-
-
 
 
 if __name__ == '__main__':
